@@ -539,8 +539,8 @@ class World(object):
             if agent.existence == True:
                 energy_incomes.append(agent.energy)
         n = len(energy_incomes)
-        c = sort(energy_incomes)
-        c = cumsum(c)
+        c = sorted(energy_incomes)
+        c = np.cumsum(c)
         c = np.insert(c,[0],0)
         points = np.zeros([n+1,2])
         for i in xrange(n+1):
@@ -632,7 +632,7 @@ class World(object):
             print "\n"        
     
     def draw(self):
-        draw_matrix(self.grid, label = self.world_id + str(self.step), self.color_code)
+        draw_matrix(self.grid,self.world_id + str(self.step) , self.color_code)
 
 def find_all(arr, test):
     """ 
@@ -700,4 +700,4 @@ def draw_matrix(arr, label ,color_code={}):
     x = pylab.gca()
     ax.set_ylim(ax.get_ylim()[::-1])
 
-    plt.savefig("imagenes/%.png" %label) 
+    plt.savefig("imagenes/%s.png" % label)
